@@ -40,3 +40,6 @@ Trying to install the following will probably do it, but I'm interested to know 
 
   There were some helpful post here as to getting keyboards to work with yun.
   http://forum.arduino.cc/index.php?topic=207069.15
+
+  Oh yeah.. disabling bridge is important too there are instructions for that here-
+http://forum.arduino.cc/index.php?topic=319151.0  
