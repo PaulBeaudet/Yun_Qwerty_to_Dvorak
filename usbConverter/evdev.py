@@ -32,13 +32,24 @@ __all__ = ["DeviceGroup"]
 class EventGenerator():
     def __init__(self):
         self.listen = DeviceGroup(sys.argv[1:])
+        #TODO hardcode '/dev/input/event1' not sure how, it's passed as a list
+        self.event = 0
+
+    def refresh(self):
+        self.event = self.listen.next_event()
 
     def pressEvent(self):
-        event = self.listen.next_event()
-        if event is not None:
-            if event.type == "EV_KEY" and event.value == 1:
-                if event.code.startswith("KEY"):
-                    return event.code
+        if self.event is not None:
+            if self.event.type == "EV_KEY" and self.event.value == 1:
+                if self.event.code.startswith("KEY"):
+                    return self.event.code
+        return 0
+
+    def releaseEvent(self):
+        if self.event is not None:
+            if self.event.type == "EV_KEY" and self.event.value == 0:
+                if self.event.code.startswith("KEY"):
+                    return self.event.code
         return 0
 
 '''
