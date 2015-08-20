@@ -29,11 +29,10 @@ dvorakLookup = {
     "KEY_Y": "f",
     "KEY_Z": ";",
     "KEY_SEMICOLON": "s",
-    "KEY_COMMA": "w",
-    "KEY_DOT": "v",
-    "KEY_SLASH": "z",
-    "KEY_SPACE": " ",
-    "KEY_ENTER": "\r",
+    "KEY_COMMA"    : "w",
+    "KEY_DOT"      : "v",
+    "KEY_SLASH"    : "z",
+    "KEY_SPACE"    : " ",
     "KEY_1": "1",
     "KEY_2": "2",
     "KEY_3": "3",
@@ -44,21 +43,55 @@ dvorakLookup = {
     "KEY_8": "8",
     "KEY_9": "9",
     "KEY_0": "0",
-    "KEY_MINUS": "[",
-    "KEY_EQUAL": "]",
+    "KEY_MINUS"     : "[",
+    "KEY_EQUAL"     : "]",
     "KEY_APOSTROPHE": "-",
-    "KEY_BACKSLASH": "\\",
-    "KEY_TAB": "\t",
-    "KEY_GRAVE": "`",
-    "KEY_BACKSPACE": "\b",
-    "KEY_CAPSLOCK": "\b",
+    "KEY_BACKSLASH" : "\\",
+    "KEY_TAB"       : "\t",
+    "KEY_GRAVE"     : "`",
+    "KEY_BACKSPACE" : "\b",
+    "KEY_CAPSLOCK"  : "\b",
     "KEY_RIGHTBRACE": "=",
-    "KEY_LEFTBRACE": "/"
+    "KEY_LEFTBRACE" : "/",
+    "KEY_ENTER"     : 0xB0,
+    "KEY_ESC":        0xB1,
+    "KEY_LEFTCTRL":   0x80,
+    "KEY_LEFTSHIFT":  0x81,
+    "KEY_LEFTALT":    0x82,
+    "KEY_LEFTMETA":   0x83,
+    "KEY_RIGHTCTRL":  0x84,
+    "KEY_RIGHTSHIFT": 0x85,
+    "KEY_RIGHTALT":   0x86,
+    "KEY_RIGHTMETA":  0x87,
+    "KEY_UP":         0xDA,
+    "KEY_DOWN":       0xD9,
+    "KEY_LEFT":       0xD8,
+    "KEY_RIGHT":      0xD7,
+    "KEY_INSERT":     0xD1,
+    "KEY_DELETE":     0xD4,
+    "KEY_PAGEUP":     0xD3,
+    "KEY_PAGEDOWN":   0xD6,
+    "KEY_HOME":       0xD2,
+    "KEY_END":        0xD5,
+    "KEY_F1":         0xC2,
+    "KEY_F2":         0xC3,
+    "KEY_F3":         0xC4,
+    "KEY_F4":         0xC5,
+    "KEY_F5":         0xC6,
+    "KEY_F6":         0xC7,
+    "KEY_F7":         0xC8,
+    "KEY_F8":         0xC9,
+    "KEY_F9":         0xCA,
+    "KEY_F10":        0xCB,
+    "KEY_F11":        0xCC,
+    "KEY_F12":        0xCD
 
 }
 
 def toDvorak(key):
     try:
-        return dvorakLookup[key]
+        return chr(dvorakLookup[key])
     except KeyError, e:
-        return "error"
+        return "er"
+    except TypeError, e:
+        return dvorakLookup[key]

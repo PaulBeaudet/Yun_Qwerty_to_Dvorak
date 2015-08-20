@@ -15,6 +15,7 @@ import globalData as GD  # There should be a better way of managing this
 import arduinoComms as Arduino
 import evdev as listener
 import QtoDConverter as Convert
+from array import *
 
 GD.arduinoBoard = "Yun" # "Other" or "Leonardo" or "Yun"
 
@@ -43,10 +44,14 @@ while True:
     release = events.releaseEvent()
     if press:
         convertion = Convert.toDvorak(press)
-        if convertion is "error":
+        if convertion is "er":
             print press
         else:
-            Arduino.sendTo(convertion)
-            print convertion
+            Arduino.sendTo(convertion + "1")
     if release:
-        print release + " released"
+        convertion = Convert.toDvorak(release)
+        if convertion is "er":
+            print release
+        else:
+            Arduino.sendTo(convertion + "0")
+        # print release + " released"

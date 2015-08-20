@@ -1,6 +1,5 @@
 // qToDvorak.ino ~
 // See licence for details
-
 const byte numChars = 32;
 char receivedChars[numChars];
 
@@ -47,7 +46,8 @@ void updateSerial(){
 
 void printKeys(){
 	if(newData == true){
-		Keyboard.write(receivedChars[0]);
+		if(receivedChars[1] == '1'){Keyboard.press(receivedChars[0]);}
+		else                       {Keyboard.release(receivedChars[0]);}
 		newData = false;
 	}
 }
