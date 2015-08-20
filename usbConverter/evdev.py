@@ -120,7 +120,7 @@ class Device(BaseDevice):
         BaseDevice.__init__(self)
         self.fd = os.open(filename, os.O_RDONLY | os.O_NONBLOCK)
         self.packetSize = Event.get_format_size()
-#		self.readMetadata()
+#        self.readMetadata()
 
     def poll(self):
         """Receive and process all available input events"""

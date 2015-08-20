@@ -14,6 +14,7 @@ import sys
 import globalData as GD  # There should be a better way of managing this
 import arduinoComms as Arduino
 import evdev as listener
+import QtoDConverter as Convert
 
 GD.arduinoBoard = "Yun" # "Other" or "Leonardo" or "Yun"
 
@@ -21,27 +22,31 @@ GD.serialPort = "/dev/ttyATH0" # for the Yun
 # GD.serialPort = "/dev/ttyACM0"
 
 #=============================  SET_UP
-	# open Serial Connection
+    # open Serial Connection
 print "Setup Serial Connection"
 try:
-	Arduino.setupSerial(GD.serialPort, 115200)
-	print "Serial Port Open"
+    Arduino.setupSerial(GD.serialPort, 115200)
+    print "Serial Port Open"
 
 except Exception as Ex:
-	print "failed to open serial port"
-	print type(Ex)
-	sys.exit();
+    print "failed to open serial port"
+    print type(Ex)
+    sys.exit();
 
 events = listener.EventGenerator() # instantiate event generating object
 
 #============================ MAIN LOOP
 
 while True:
-	events.refresh()
-	press = events.pressEvent()
-	release = events.releaseEvent()
-	if press:
-		Arduino.sendTo(press)
-		print press
-	if release:
-		print release + " released"
+    events.refresh()
+    press = events.pressEvent()
+    release = events.releaseEvent()
+    if press:
+        convertion = Convert.toDvorak(press)
+        if convertion is "error":
+            print press
+        else:
+            Arduino.sendTo(convertion)
+            print convertion
+    if release:
+        print release + " released"
